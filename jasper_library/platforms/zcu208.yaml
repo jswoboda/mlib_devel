@@ -1,6 +1,6 @@
 name: zcu208
 manufacturer: Xilinx
-fpga: xczu48dr-fsvg1517-2-e-es1
+fpga: xczu48dr-fsvg1517-2-e
 family: rfsoc
 config_voltage: 1.8
 cfgbvs: GND
@@ -65,17 +65,17 @@ provides:
 
 pins:
   clk_100_p:
-    iostd: LVDS
-    loc: G12
+    iostd: LVDS_25
+    loc: AU4
   clk_100_n:
-    iostd: LVDS
-    loc: G11
+    iostd: LVDS_25
+    loc: AU3
   clk_125_p:
-    iostd: LVDS
-    loc: A13
+    iostd: LVDS_25
+    loc: C8
   clk_125_n:
-    iostd: LVDS
-    loc: A12
+    iostd: LVDS_25
+    loc: C7
 
 # NOTE: most of the IO constraints and clocking constraints are taken care of by
 # the RFDC IP itself. Vivado has that baked into the output products of teh IP
@@ -129,42 +129,24 @@ pins:
   # IDT 8A34001 output Q7, refclk1 GTY bank 129
   qsfp_mgt_ref_clk_p:
     loc:
-      - V31
+      - Y31
   qsfp_mgt_ref_clk_n:
     loc:
-      - V32
+      - Y32
   qsfp_mgt_tx_p:
-    loc:
-      # bank 128 SFP[0:1]
-      - Y35
-      - V35
-      # bank 129 SFP[2:3]
-      - P35
-      - N33
+    # bank 128 SFP[0:1]# bank 129 SFP[2:3]
+    loc: [Y35, V35, P35, N33]
+      
   qsfp_mgt_tx_n:
-    loc:
-      # bank 128
-      - Y36
-      - V36
-      # bank 129
-      - P36
-      - N34
+    # bank 128 # bank 129
+    loc: [Y36, V36, P36, N34]
+ 
   qsfp_mgt_rx_p:
-    loc:
-      # bank 128
-      - AA38
-      - W38
-      # bank 129
-      - N38
-      - M36
+    # bank 128 # bank 129
+    loc: [AA38, W38, N38, M36]
   qsfp_mgt_rx_n:
-    loc:
-      # bank 128
-      - AA39
-      - W39
-      # bank 129
-      - N39
-      - M37
+     # bank 128 # bank 129
+    loc: [AA39, W39, N39, M37]
 
   # TODO: what do we do here? These pins are strapped?
   #qsfp_modprs:
